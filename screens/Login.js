@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Logo from '../components/Logo';
+import HomeScreen from '../screens/HomeScreen';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -34,7 +35,7 @@ const Login = () => {
         secureTextEntry={true}
         onChangeText={(text) => setPassword(text)}
       />
-      <TouchableOpacity style={styles.button} onPress={onSignInPressed}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
         <Text style={styles.buttonText}>Connexion</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignUp')}>
