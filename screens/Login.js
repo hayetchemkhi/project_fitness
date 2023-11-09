@@ -3,6 +3,8 @@ import { View, TextInput, Button, StyleSheet, Text, TouchableOpacity } from 'rea
 import { useNavigation } from '@react-navigation/native';
 import Logo from '../components/Logo';
 import HomeScreen from '../screens/HomeScreen';
+import Dashboardscreen from './Dashboardscreen';
+
 
 const Login = () => {
   const navigation = useNavigation();
@@ -35,7 +37,7 @@ const Login = () => {
         secureTextEntry={true}
         onChangeText={(text) => setPassword(text)}
       />
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Dashboard')}>
         <Text style={styles.buttonText}>Connexion</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignUp')}>
