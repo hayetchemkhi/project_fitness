@@ -5,6 +5,7 @@ import App1 from './bacckground';
 import HomeScreen from './HomeScreen';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Formulaire from './Formulaire';
+import NutritionScreen from './NutritionScreen';
 
 
 export default function App() {
@@ -89,12 +90,33 @@ export default function App() {
                 </Pressable>
         </View>
        
-        <View style={styles.buttonContainer}>
-          <Button
-            title="button 4"
-            onPress={handleButtonPress1}
-          />
-        </View>
+        <Pressable
+                    onPress={() => {
+                        navigation.navigate("NutritionScreen")
+
+                    
+                    }}
+                    style={{
+                        backgroundColor: "blue",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        marginTop: 20,
+                        borderRadius: 8,
+                        padding: 10,
+                        width: 150,
+
+                    }}
+                >
+                    <Text
+                        style={{
+                            textAlign: "center",
+                            fontWeight: "bold",
+                            fontSize: 20,
+                            color: "white"
+
+                        }}
+                    >Diet Plan</Text>
+                </Pressable>
 
 
     
