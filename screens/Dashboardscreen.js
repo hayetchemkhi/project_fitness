@@ -4,6 +4,7 @@ import { StyleSheet, Text, View,SafeAreaView,ImageBackground,Button,TouchableOpa
 import App1 from './bacckground';
 import HomeScreen from './HomeScreen';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import Formulaire from './Formulaire';
 
 
 export default function App() {
@@ -31,12 +32,33 @@ export default function App() {
     <View style={styles.overlay}>
       <Text style={styles.text}>just you getting better </Text>
 
-      <View style={styles.buttonContainer}>
-          <Button
-            title="button1"
-           
-          />
-        </View>
+      <Pressable
+                    onPress={() => {
+                        navigation.navigate("Formulaire")
+
+                    
+                    }}
+                    style={{
+                        backgroundColor: "blue",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        marginTop: 20,
+                        borderRadius: 8,
+                        padding: 10,
+                        width: 150,
+
+                    }}
+                >
+                    <Text
+                        style={{
+                            textAlign: "center",
+                            fontWeight: "bold",
+                            fontSize: 20,
+                            color: "white"
+
+                        }}
+                    >The Form</Text>
+                </Pressable>
         <View style={styles.buttonContainer}>
         <Pressable
                     onPress={() => {
@@ -66,12 +88,7 @@ export default function App() {
                     >Workout</Text>
                 </Pressable>
         </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            title="button3"
-            onPress={() => navigation.navigate('')}
-          />
-        </View>
+       
         <View style={styles.buttonContainer}>
           <Button
             title="button 4"
