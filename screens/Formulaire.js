@@ -1,11 +1,30 @@
-import { StyleSheet, Text, Dimensions,FlatList,Switch, View, Button } from 'react-native';
+import { StyleSheet, Text, Dimensions,FlatList,Switch, View, Button, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { Picker } from "@react-native-picker/picker";
+import { CheckBox } from 'react-native-elements';
+
 import LottieView from 'lottie-react-native';
 import animdata from '../assets/anim.json';
 
 
 const Form = (props) => {
+  const [weightGoal, setWeightGoal] = useState(null);
+  const handleWeightGoalChange = (goal) => {
+    setWeightGoal(goal);
+  };
+  const [selectedPeriod, setSelectedPeriod] = useState('twoWeeks');
+
+const handlePeriodChange = (period) => {
+  setSelectedPeriod(period);
+};
+
+const reminderOptions = [
+  { label: 'Yes', value: 'yes' },
+  { label: 'No', value: 'no' },
+];
+
+
+
     const [selectedAllergies, setSelectedAllergies] = useState([]); 
 
     const handleAllergyChange = (allergy) => {
@@ -16,6 +35,7 @@ const Form = (props) => {
     
         setSelectedAllergies(updatedAllergies);
       };
+
     
       const allergiesData = [
         { label: 'Dairy', value: 'dairy' },
@@ -46,6 +66,22 @@ const Form = (props) => {
     setSelectedGender(itemValue);
     onGenderChange(itemValue);
   };
+  const [reminderPreference, setReminderPreference] = useState('no');
+
+  const handleReminderChange = (value) => {
+    setReminderPreference(value);
+  };
+  
+  const periodOptions = [
+    { label: '2 Weeks', value: 'twoWeeks' },
+    { label: '1 Month', value: 'oneMonth' },
+    { label: '2 Months', value: 'twoMonths' },
+    { label: '3 Months', value: 'threeMonths' },
+    { label: ' + 3 Months', value: '+threeMonths' },
+
+
+  ];
+  
 
   const calculateIdealWeight = () => {
     const heightInCentimeters = parseInt(selectedHeight);
@@ -72,10 +108,16 @@ const Form = (props) => {
         source={animdata}
         autoPlay
         loop
-        style={{ alignContent:'center',height:120,marginHorizontal:76 }}
+        style={{ alignContent:'flex-start',height:120,marginHorizontal:40 }}
       />
       </View>
-
+      <FlatList
+      style={styles.container}
+      contentContainerStyle={styles.scrollContent}
+      data={[{ key: '1' }]} // You need to provide some data to FlatList
+      horizontal ="True"// Set horizontal to true for horizontal scrolling
+      renderItem={({ item }) => (
+   
       <View style={styles.footer}>
         <Text style={styles.text_footer}>Select your Height : </Text>
         <View style={{ alignItems: 'center' }}>
@@ -106,7 +148,7 @@ const Form = (props) => {
           <View style={{ height: 20 }}></View>
           <View>
             <Text style={styles.text_footer}>Select your gender :</Text>
-            <View style={{ height: 15 }}></View>
+            <View style={{ height: 20 }}></View>
             <Picker
               selectedValue={selectedGender}
               onValueChange={handleGenderChange}
@@ -116,8 +158,41 @@ const Form = (props) => {
               <Picker.Item label="Female" value="female" />
             </Picker>
           </View>
+          <View style={{ height: 20 }}></View>
           <Text>{calculateIdealWeight()}</Text>
+          <View style={{ height: 20 }}></View>
+          <View>
+  <Text style={styles.text_footer}>Select your weight goal:</Text>
+  <View style={{ height: 20 }}></View>
+  <CheckBox
+    title="Gain Weight"
+    checked={weightGoal === 'gain'}
+    onPress={() => handleWeightGoalChange('gain')}
+  />
+  <CheckBox
+    title="Lose Weight"
+    checked={weightGoal === 'lose'}
+    onPress={() => handleWeightGoalChange('lose')}
+  />
+  <View>
+  <View style={{ height: 20 }}></View>
+  <Text style={styles.text_footer}>Select the wanted period:</Text>
+  <View style={{ height: 20 }}></View>
+  <Picker
+    selectedValue={selectedPeriod}
+    onValueChange={(itemValue, itemIndex) => handlePeriodChange(itemValue)}
+    style={{ height: 40, width: 200, backgroundColor: '#A9EAFE', alignContent: 'center' }}
+  >
+    {periodOptions.map((option) => (
+      <Picker.Item key={option.value} label={option.label} value={option.value} />
+    ))}
+  </Picker>
+</View>
+
+</View>
+ <View style={{ height: 20 }}></View>
           <Text style={styles.text_footer}>Select your food allergies : </Text>
+          <View style={{ height: 20 }}></View>
           <FlatList
           data={allergiesData}
           keyExtractor={(item) => item.value}
@@ -128,19 +203,41 @@ const Form = (props) => {
                 onValueChange={() => handleAllergyChange(item.value)}
               />
               <Text>{item.label}</Text>
+              
             
             </View>
           )}
         />
-         <View style={{ height: 15 }}></View>
-          <Button title="Valider" onPress={handleValidation} color="#87CEEF" />
+        <View>
+        <View style={{ height: 20 }}></View>
+  <Text style={styles.text_footer}>Do you want a daily remainder ?</Text>
+  <View style={{ height: 20 }}></View>
+
+  <Picker
+    selectedValue={reminderPreference}
+    onValueChange={(itemValue, itemIndex) => handleReminderChange(itemValue)}
+    style={{ marginStart:50, height: 30, width: 120, backgroundColor: '#A9EAFE', alignContent: 'center'}}
+  >
+    {reminderOptions.map((option) => (
+      <Picker.Item key={option.value} label={option.label} value={option.value} />
+    ))}
+  </Picker>
+
+</View>
+
+         <View style={{ height: 25 }}></View>
+          <Button title="Submit" onPress={handleValidation} color="#87CEEF" />
           
+        </View>  
         </View>
-      </View>
+        )}
+    />
+ 
     </View>
+  
   );
 };
-
+ // on doit comme   
 const { height } = Dimensions.get("screen");
 
 const styles = StyleSheet.create({
@@ -149,7 +246,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#87CEFA',
   },
   header: {
-    flex: 1,
+    flex: 0.25,
     justifyContent: 'flex-end',
    
     marginRight: 20,
@@ -187,6 +284,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingHorizontal: 10,
   },
+  scrollContent: {
+    flexGrow: 4,
+  },
+
 });
 
 export default Form;

@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
   SignUp: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 10,
+    margin: 10,
     backgroundColor: 'lightblue',
-    paddingVertical: 13,
+    paddingVertical: 14,
     paddingHorizontal: 30,
     borderRadius: 20,
   },

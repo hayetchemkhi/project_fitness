@@ -8,7 +8,7 @@ const HomeScreen = () => {
 
             <View
                 style={{
-                    backgroundColor: "#CD853F",
+                    backgroundColor: "#6CB4FE",
                     padding: 10,
                     height: 220,
                     width: "100%",
@@ -106,9 +106,9 @@ const HomeScreen = () => {
                 </View>
             </View>
             <View>
-                <FitnessCards />
+                <FitnessCards/>
             </View>
-        </ScrollView >
+        </ScrollView>
     )
 }
 

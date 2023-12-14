@@ -8,9 +8,9 @@ import FitScreen from "./screens/FitScreen";
 import RestScreen from "./screens/RestScreen";
 import SignUpt from './screens/SignUpt';
 import Login from './screens/Login';
-import Dashboardscreen from './screens/Dashboardscreen';
 import Formulaire from './screens/Formulaire';
 import NutritionScreen from './screens/NutritionScreen';
+import Today from './screens/Today';
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator();
     return (
@@ -18,7 +18,7 @@ const StackNavigator = () => {
             <Stack.Navigator initialRouteName="Login">
                 <Stack.Screen name="login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name="SignUp" component={SignUpt} options={{ headerShown: false }} />
-                <Stack.Screen name="Dashboard" component={Dashboardscreen} options={{ headerShown: false }} />
+                <Stack.Screen name="Today" component={Today} options={{ headerShown: false }} />
                 <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="NutritionScreen" component={NutritionScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Formulaire" component={Formulaire} options={{ headerShown: false }} />

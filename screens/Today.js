@@ -1,0 +1,240 @@
+/*import React from 'react';
+import { Text, View, ImageBackground, Pressable, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
+const CustomButton = ({ onPress, title }) => (
+  <Pressable
+    onPress={onPress}
+    style={{
+      backgroundColor: 'blue',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginTop: 20,
+      borderRadius: 8,
+      padding: 10,
+      width: 150,
+    }}
+  >
+    <Text style={styles.buttonText}>{title}</Text>
+  </Pressable>
+);
+
+const App = () => {
+  const navigation = useNavigation();
+
+  const handleFormPress = () => {
+    navigation.navigate('Formulaire');
+  };
+
+  const handleWorkoutPress = () => {
+    navigation.navigate('Home');
+  };
+
+  const handleDietPress = () => {
+    navigation.navigate('NutritionScreen');
+  };
+
+  return (
+    <ImageBackground source={require("../assets/111.png")} style={styles.backgroundImage}>
+      <View style={styles.overlay}>
+        <Text style={styles.text}>Just you getting better </Text>
+
+        <CustomButton onPress={handleFormPress} title="The Form" />
+        <CustomButton onPress={handleWorkoutPress} title="Workout" />
+        <CustomButton onPress={handleDietPress} title="Diet Plan" />
+      </View>
+    </ImageBackground>
+  );
+};
+
+const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  buttonText: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: 'white',
+  },
+});
+
+export default App;*/
+
+
+
+import React from 'react';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { MaterialIcons } from '@expo/vector-icons';
+
+const Today = () => {
+  const navigation = useNavigation();
+
+  const navigateToExercise = () => {
+    navigation.navigate('Home');
+  };
+
+  const navigateToForm = () => {
+    navigation.navigate('Formulaire');
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.progress}>
+        <View style={styles.titleBox}>
+          <Text style={styles.title}>Today's Progress! 🏃</Text>
+        </View>
+        <View style={styles.progressContainer}>
+          <View style={styles.progressBox}>
+            <Text style={styles.progressTitle}>Current Goal</Text>
+            <Text style={styles.progressValue}>120 min</Text>
+          </View>
+          <View style={styles.progressBox}>
+            <Text style={styles.progressTitle}>Current Total</Text>
+            <Text style={styles.progressValue}>90 min</Text>
+          </View>
+        </View>
+      </View>
+
+      <View style={styles.exerciseContainer}>
+        <View style={[styles.titleBox, { backgroundColor: 'rgba(178,108,233,1)', marginVertical: 10 }]}>
+          <Text style={styles.title}>Today's Activity 🏋️</Text>
+        </View>
+
+        <ScrollView horizontal={false} style={styles.box}>
+          {/* Placeholder content for exercises */}
+          <Text>                No exercises for today</Text>
+        </ScrollView>
+      </View>
+
+      
+      <View style={styles.buttonBox}>
+        <TouchableOpacity onPress={navigateToExercise} style={[styles.buttonShape, { marginHorizontal: 10 }]}>
+          <MaterialIcons name="fitness-center" size={24} color="white" />
+          <Text style={styles.buttonText}>Add Exercise</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={navigateToForm} style={[styles.buttonShape, { backgroundColor: 'rgba(178,108,233,1)', marginHorizontal: 10 }]}>
+        
+          <Text style={styles.buttonText}>Go To Form</Text>
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('NutritionScreen')
+        }
+        style={[styles.buttonShape, { backgroundColor: 'rgba(178,108,233,1)' }]}
+      >
+        <Text style={styles.buttonText}>Go To Diet</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate('login')} style={[styles.buttonShape, { backgroundColor: '#87BAFA' }]}>
+        <MaterialIcons name="exit-to-app" size={24} color="white" />
+        <Text style={styles.buttonText}>Log Out</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop:50,
+    alignItems: 'center',
+  },
+  titleBox: {
+    backgroundColor: '#87BAFA',
+    borderRadius: 10,
+    width: '95%',
+    height: 40,
+    justifyContent: 'center',
+  },
+  title: {
+    color: 'rgba(255,255,255,1)',
+    fontSize: 22,
+    alignSelf: 'center',
+  },
+  buttonBox: {
+    flexDirection: 'row',
+    width: '75%',
+    justifyContent: 'center',
+  },
+  buttonShape: {
+    backgroundColor: 'rgba(178,108,233,1)',
+    borderRadius: 10,
+    width: '50%',
+    height: 40,
+    marginTop: 10,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'rgba(255,255,255,1)',
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginLeft: 5,
+  },
+  progress: {
+    width: '95%',
+    height: 125,
+    marginTop: 15,
+    alignItems: 'center',
+  },
+  progressContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    marginTop: 20,
+    justifyContent: 'center',
+  },
+  progressBox: {
+    backgroundColor: 'rgba(213,218,223,1)',
+    width: '40%',
+    height: 55,
+    borderRadius: 10,
+    marginHorizontal: 25,
+  },
+  progressTitle: {
+    color: '#121212',
+    alignSelf: 'center',
+    marginVertical: 4,
+  },
+  progressValue: {
+    color: '#121212',
+    fontSize: 20,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+  },
+  exerciseContainer: {
+    width: '95%',
+    height: 300,
+    margin:55,
+    alignItems: 'center',
+  },
+  box: {
+    backgroundColor: 'rgba(213,218,223,1)',
+    borderRadius: 10,
+    width: '75%',
+    height: 200,
+    marginTop:15,
+    alignSelf: 'center',
+  },
+});
+
+export default Today ;
