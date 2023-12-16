@@ -1,11 +1,18 @@
 import { StyleSheet, Text, View, SafeAreaView, Image, Pressable, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { AntDesign } from '@expo/vector-icons';
+import { FitnessItems } from '../Context';
 const WorkoutScreen = () => {
     const route = useRoute();
     //  console.log(route.params)
     const navigation = useNavigation();
+    const {
+        completed,
+        setCompleted,
+
+    } = useContext(FitnessItems);
     return (
         <>
             <ScrollView showsVerticalScrollIndicator={false}
@@ -45,7 +52,8 @@ const WorkoutScreen = () => {
                         <View style={{ marginLeft: 10, }}>
                             <Text style={{
                                 fontSize: 17,
-                                fontWeight: "bold",
+                                fontWeight: "100",
+                                width: 170,
                             }}>{item.name}</Text>
                             <Text style={{
                                 marginTop: 4,
@@ -54,14 +62,23 @@ const WorkoutScreen = () => {
                             }}>x{item.sets}
                             </Text>
                         </View>
+                        {completed.includes(item.name) ? (
+                            <AntDesign style={{ marginLeft: 40 }} name="checkcircle" size={24} color="green" />
+                        ) : (null
+                        )}
                     </Pressable>
                 ))}
             </ScrollView >
 
             <Pressable
-                onPress={() => navigation.navigate("Fit", {
-                    excersises: route.params.excersises,
-                })}
+                onPress={() => {
+                    navigation.navigate("Fit", {
+                        excersises: route.params.excersises,
+                    })
+
+
+                    setCompleted([]);
+                }}
                 style={{
                     backgroundColor: "blue",
                     padding: 10,

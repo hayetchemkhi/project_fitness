@@ -93,68 +93,79 @@ const Today = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.progress}>
-        <View style={styles.titleBox}>
-          <Text style={styles.title}>Today's Progress! 🏃</Text>
-        </View>
-        <View style={styles.progressContainer}>
-          <View style={styles.progressBox}>
-            <Text style={styles.progressTitle}>Current Goal</Text>
-            <Text style={styles.progressValue}>120 min</Text>
+
+    <ScrollView showsVerticalScrollIndicator={false}
+      style={{
+        backgroundColor: "white",
+        marginTop: 50,
+      }} >
+      <View style={styles.container}>
+        <View style={styles.progress}>
+          <View style={styles.titleBox}>
+            <Text style={styles.title}>Today's Progress! 🏃</Text>
           </View>
-          <View style={styles.progressBox}>
-            <Text style={styles.progressTitle}>Current Total</Text>
-            <Text style={styles.progressValue}>90 min</Text>
+          <View style={styles.progressContainer}>
+            <View style={styles.progressBox}>
+              <Text style={styles.progressTitle}>Current Goal</Text>
+              <Text style={styles.progressValue}>120 min</Text>
+            </View>
+            <View style={styles.progressBox}>
+              <Text style={styles.progressTitle}>Current Total</Text>
+              <Text style={styles.progressValue}>90 min</Text>
+            </View>
           </View>
         </View>
-      </View>
 
-      <View style={styles.exerciseContainer}>
-        <View style={[styles.titleBox, { backgroundColor: 'rgba(178,108,233,1)', marginVertical: 10 }]}>
-          <Text style={styles.title}>Today's Activity 🏋️</Text>
+        <View style={styles.exerciseContainer}>
+          <View style={[styles.titleBox, { backgroundColor: 'rgba(178,108,233,1)', marginVertical: 10 }]}>
+            <Text style={styles.title}>Today's Activity 🏋️</Text>
+          </View>
+
+          <ScrollView horizontal={false} style={styles.box}>
+            {/* Placeholder content for exercises */}
+            <Text>                No exercises for today</Text>
+          </ScrollView>
         </View>
 
-        <ScrollView horizontal={false} style={styles.box}>
-          {/* Placeholder content for exercises */}
-          <Text>                No exercises for today</Text>
-        </ScrollView>
-      </View>
 
-      
-      <View style={styles.buttonBox}>
-        <TouchableOpacity onPress={navigateToExercise} style={[styles.buttonShape, { marginHorizontal: 10 }]}>
-          <MaterialIcons name="fitness-center" size={24} color="white" />
-          <Text style={styles.buttonText}>Add Exercise</Text>
+        <View style={styles.buttonBox}>
+          <TouchableOpacity onPress={navigateToExercise} style={[styles.buttonShape, { marginHorizontal: 10 }]}>
+            <MaterialIcons name="fitness-center" size={24} color="white" />
+            <Text style={styles.buttonText}>Add Exercise</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={navigateToForm} style={[styles.buttonShape, { backgroundColor: 'rgba(178,108,233,1)', marginHorizontal: 10 }]}>
+
+            <Text style={styles.buttonText}>Go To Form</Text>
+          </TouchableOpacity>
+        </View>
+
+
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('NutritionScreen')
+          }
+          style={[styles.buttonShape, { backgroundColor: 'rgba(178,108,233,1)' }]}
+        >
+          <Text style={styles.buttonText}>Go To Diet</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={navigateToForm} style={[styles.buttonShape, { backgroundColor: 'rgba(178,108,233,1)', marginHorizontal: 10 }]}>
-        
-          <Text style={styles.buttonText}>Go To Form</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('login')} style={[styles.buttonShape, { backgroundColor: '#87BAFA' }]}>
+          <MaterialIcons name="exit-to-app" size={24} color="white" />
+          <Text style={styles.buttonText}>Log Out</Text>
         </TouchableOpacity>
       </View>
+    </ScrollView>
 
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('NutritionScreen')
-        }
-        style={[styles.buttonShape, { backgroundColor: 'rgba(178,108,233,1)' }]}
-      >
-        <Text style={styles.buttonText}>Go To Diet</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => navigation.navigate('login')} style={[styles.buttonShape, { backgroundColor: '#87BAFA' }]}>
-        <MaterialIcons name="exit-to-app" size={24} color="white" />
-        <Text style={styles.buttonText}>Log Out</Text>
-      </TouchableOpacity>
-    </View>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop:50,
+    marginTop: 50,
     alignItems: 'center',
   },
   titleBox: {
@@ -224,7 +235,7 @@ const styles = StyleSheet.create({
   exerciseContainer: {
     width: '95%',
     height: 300,
-    margin:55,
+    margin: 55,
     alignItems: 'center',
   },
   box: {
@@ -232,9 +243,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '75%',
     height: 200,
-    marginTop:15,
+    marginTop: 15,
     alignSelf: 'center',
+
   },
+
 });
 
-export default Today ;
+export default Today;
