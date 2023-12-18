@@ -4,6 +4,7 @@ const app = express();
 const generator = require('generate-password');
 const bodyParser = require("body-parser")//formatage json
 const user=require("./models/user")
+const form=require("./models/form")
 const jwt = require("jsonwebtoken")
 const database=require("./db")
 const bcrypt = require("bcryptjs")
@@ -70,6 +71,45 @@ const transporter = nodemailer.createTransport({
         rejectUnauthorized: false,
     },
 });
+app.post("/form/:id",async(req,res)=>{
+    try {
+        const new_form=new form({
+            selectedHeight:req.body.selectedHeight,
+            selectedWeight:req.body.selectedWeight,
+            selectedGender:req.body.selectedGender ,
+            weightGoal:req.body.weightGoal,
+            selectedPeriod:req.body.selectedPeriod,
+            selectedAllergies:req.body.selectedAllergies,
+            reminderPreference:req.body.reminderPreference
+        })
+        const response=await new_form.save()
+        await user.findByIdAndUpdate({
+            _id:req.params.id
+        },
+        {
+            $addToSet:{formulaire:response._id},
+           //push/pull
+        },
+        {
+            new:true
+        }
+        )
+        res.status(200).json("form saved successfully")
+        
+    } catch (error) {
+        console.log(error)
+        res.status(400).json(" form failed")
+    }
+})
+app.get("/user/:id",async(req,res)=>{
+    try {
+        const exist_user= await user.findById(req.params.id).populate("formulaire")
+        res.status(200).json(exist_user)
+        
+    } catch (error) {
+        res.status(400).json("user doeen't exist")
+    }
+})
 
 app.post("/singup",async(req,res)=>{
     try {

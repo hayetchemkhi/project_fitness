@@ -1,4 +1,5 @@
 const mongoose =require('mongoose')
+const form = require('./form')
 
 
 const userschema=new mongoose.Schema({
@@ -10,6 +11,11 @@ const userschema=new mongoose.Schema({
     },
     password:{
         type: String
+    },
+    formulaire :{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "form"
+        
     },
     
     role: { 
