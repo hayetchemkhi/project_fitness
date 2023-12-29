@@ -17,6 +17,7 @@ import KetoDietScreen from './screens/KetoDietScreen';
 import PaleoDietScreen from './screens/PaleoDietScreen';
 import DetoxDietScreen from './screens/DetoxDietScreen';
 import RecetteDetailsScreen from './screens/RecetteDetailsScreen';
+import Profile from './screens/Profile';
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator();
     return (
@@ -25,6 +26,11 @@ const StackNavigator = () => {
                 <Stack.Screen name="login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name="SignUp" component={SignUpt} options={{ headerShown: false }} />
                 <Stack.Screen name="Today" component={Today} options={{ headerShown: false }} />
+                <Stack.Screen
+  name="Profile"
+  component={Profile}
+  options={{ headerShown: false }}
+/>
                 <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="NutritionScreen" component={NutritionScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Formulaire" component={Formulaire} options={{ headerShown: false }} />
@@ -37,6 +43,7 @@ const StackNavigator = () => {
         <Stack.Screen name='PaleoDiet' component={PaleoDietScreen} options={{ headerShown: false }} />
         <Stack.Screen name='DetoxDiet' component={DetoxDietScreen} options={{ headerShown: false }}/>
         <Stack.Screen name='RecetteDetails' component={RecetteDetailsScreen} options={{ headerShown: false }} />
+        
             </Stack.Navigator>
         </NavigationContainer>
     );

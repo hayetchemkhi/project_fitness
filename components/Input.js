@@ -13,13 +13,14 @@ export default function Input() {
             <TextInput 
                 style={styles.input}
                 placeholder='Name'
+            
             />
 
         </View>
         <View style={styles.container}>
             <TextInput 
                 style={styles.input}
-                placeholder='Prenom'
+                placeholder='Lastname'
             />
 
         </View>

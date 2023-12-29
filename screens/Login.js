@@ -15,8 +15,8 @@ const Login = () => {
     // Ici, vous pouvez ajouter la logique de validation du login.
     // Si les informations de connexion sont correctes, vous pouvez naviguer vers une autre page.
     // Par exemple :
-    if (username === 'utilisateur' && password === 'motdepasse') {
-      navigation.navigate('Accueil'); // Remplacez 'Accueil' par le nom de votre page d'accueil.
+    if (username === 'Eya' && password === '123') {
+      navigation.navigate('Today', {username}); 
     } else {
       alert('Identifiants incorrects');
     }
@@ -37,7 +37,7 @@ const Login = () => {
         secureTextEntry={true}
         onChangeText={(text) => setPassword(text)}
       />
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Today')}>
+      <TouchableOpacity style={styles.button} onPress={(onSignInPressed)}>
         <Text style={styles.buttonText}>Connexion</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignUp')}>

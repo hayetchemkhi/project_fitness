@@ -5,9 +5,39 @@ import { CheckBox } from 'react-native-elements';
 
 import LottieView from 'lottie-react-native';
 import animdata from '../assets/anim.json';
+import { Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 
 const Form = (props) => {
+  const saveFormData = async () => {
+    try {
+      const response = await fetch(`http://your-express-api/form/${userId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          selectedHeight,
+          selectedWeight,
+          selectedGender,
+          weightGoal,
+          selectedPeriod,
+          selectedAllergies,
+          reminderPreference,
+        }),
+      });
+  
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.error('Error saving form data:', error);
+    }
+  };
+  
+  // Make sure to call saveFormData where needed, for example, when the user submits the form.
+  
+  const navigation = useNavigation();
   const [weightGoal, setWeightGoal] = useState(null);
   const handleWeightGoalChange = (goal) => {
     setWeightGoal(goal);
@@ -97,6 +127,34 @@ const reminderOptions = [
     
 
     return `Your ideal weight is approximately ${idealWeight.toFixed(1)} kg`;
+  };
+  const [profileData, setProfileData] = useState(null);
+  const handleValidation1 = () => {
+    const data = {
+      selectedHeight,
+      selectedWeight,
+      selectedGender,
+      weightGoal,
+      selectedPeriod,
+      selectedAllergies,
+      reminderPreference,
+    };
+
+    setProfileData(data);
+    Alert.alert(
+      'Success',
+      'We have saved your information.',
+      [
+        {
+          text: 'OK',
+          onPress: () => {
+            // Navigate to the profile page after successful submission
+            navigation.navigate('Profile', { profileData: data });
+          },
+        },
+      ],
+    
+    );
   };
 
   return (
@@ -226,7 +284,7 @@ const reminderOptions = [
 </View>
 
          <View style={{ height: 25 }}></View>
-          <Button title="Submit" onPress={handleValidation} color="#87CEEF" />
+         <Button title="Submit" onPress={handleValidation1} color="#87CEEF" />
           
         </View>  
         </View>

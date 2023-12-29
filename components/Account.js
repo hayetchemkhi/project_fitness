@@ -3,12 +3,11 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 
 export default function Account() {
-  const navigation1 = useNavigation();
+  const navigation = useNavigation();
+
   return (
-         <TouchableOpacity style={styles.container}>
-             <Text style={styles.Login}
-             onPress={() => navigation1.navigate('Login')}
-             >connecter </Text>
+         <TouchableOpacity  onPress={() => navigation.navigate('login')} style={styles.container}>
+             <Text style={styles.Login}>connecter</Text>
           </TouchableOpacity>
   )
 }

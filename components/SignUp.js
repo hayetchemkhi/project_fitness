@@ -1,13 +1,17 @@
-import { StyleSheet, Text, View ,TouchableOpacity}  from 'react-native'
+import { StyleSheet, Text, View ,TouchableOpacity, Alert}  from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 
 export default function SignUp() {
   const navigation = useNavigation();
+  const handlePress = () => {
+    
+    Alert.alert('Account Created', 'Your account has been created.');
+  };
   return (
-    <TouchableOpacity style={styles.container}>
-      <Text style={styles.SignUp}>SignUp</Text>
-    </TouchableOpacity>
+    <TouchableOpacity style={styles.container} onPress={handlePress}>
+    <Text style={styles.SignUp}>SignUp</Text>
+  </TouchableOpacity>
   )
 }
 
@@ -29,6 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightblue',
     paddingVertical: 14,
     paddingHorizontal: 30,
-    borderRadius: 20,
+    borderRadius: 18,
+    fontWeight: 'bold',
   },
 });

@@ -1,82 +1,3 @@
-/*import React from 'react';
-import { Text, View, ImageBackground, Pressable, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
-const CustomButton = ({ onPress, title }) => (
-  <Pressable
-    onPress={onPress}
-    style={{
-      backgroundColor: 'blue',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      marginTop: 20,
-      borderRadius: 8,
-      padding: 10,
-      width: 150,
-    }}
-  >
-    <Text style={styles.buttonText}>{title}</Text>
-  </Pressable>
-);
-
-const App = () => {
-  const navigation = useNavigation();
-
-  const handleFormPress = () => {
-    navigation.navigate('Formulaire');
-  };
-
-  const handleWorkoutPress = () => {
-    navigation.navigate('Home');
-  };
-
-  const handleDietPress = () => {
-    navigation.navigate('NutritionScreen');
-  };
-
-  return (
-    <ImageBackground source={require("../assets/111.png")} style={styles.backgroundImage}>
-      <View style={styles.overlay}>
-        <Text style={styles.text}>Just you getting better </Text>
-
-        <CustomButton onPress={handleFormPress} title="The Form" />
-        <CustomButton onPress={handleWorkoutPress} title="Workout" />
-        <CustomButton onPress={handleDietPress} title="Diet Plan" />
-      </View>
-    </ImageBackground>
-  );
-};
-
-const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    color: 'white',
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  buttonText: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: 'white',
-  },
-});
-
-export default App;*/
-
-
-
-
 import React, { useContext } from 'react'
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -97,13 +18,13 @@ const Today = () => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      marginTop: 50,
+      marginTop: 20,
       alignItems: 'center',
     },
     titleBox: {
       backgroundColor: '#87BAFA',
       borderRadius: 10,
-      width: '95%',
+      width: '85%',
       height: 40,
       justifyContent: 'center',
     },
@@ -122,7 +43,7 @@ const Today = () => {
       borderRadius: 10,
       width: '50%',
       height: 40,
-      marginTop: 10,
+      margin: 15,
       justifyContent: 'center',
       flexDirection: 'row',
       alignItems: 'center',

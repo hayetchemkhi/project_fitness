@@ -1,5 +1,5 @@
 const mongoose =require('mongoose')
-const form = require('./form')
+const form = require('./UserProfile')
 
 
 const userschema=new mongoose.Schema({
