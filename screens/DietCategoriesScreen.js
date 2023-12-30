@@ -1,18 +1,27 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 
-const DietCategoriesScreen = ({ handleCategoryPress }) => {
-  const [categories, setCategories] = useState([
-    "Vegan",
-    "Keto",
-    "Paleo",
-    
-    "Detox",
-  ]);
+const DietCategoriesScreen = ({ handleCategoryPress, route }) => {
+  const [categories, setCategories] = useState(["Vegan", "Keto", "Paleo", "Detox"]);
+  const { allergies } = route.params;
+
+  const getSelectedDiet = (allergies) => {
+    if (allergies.includes("dairy")) {
+      return "Detox";
+    } else if (allergies.includes("nuts")) {
+      return "Paleo";
+    } else if (allergies.includes("shellfish")) {
+      return "Vegan";
+    } else if (allergies.includes("peanuts")) {
+      return "Keto";
+    } else {
+      return "Vegan"; // Régime par défaut
+    }
+  };
 
   const onCategoryPress = (category) => {
-    
-    handleCategoryPress(category);
+    const selectedDiet = getSelectedDiet(allergies);
+    handleCategoryPress(category, selectedDiet);
   };
 
   return (

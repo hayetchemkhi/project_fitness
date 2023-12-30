@@ -140,6 +140,33 @@ const reminderOptions = [
       reminderPreference,
     };
 
+    const handleValidation1 = () => {
+  const data = {
+    selectedHeight,
+    selectedWeight,
+    selectedGender,
+    weightGoal,
+    selectedPeriod,
+    selectedAllergies,
+    reminderPreference,
+  };
+
+  setProfileData(data);
+  Alert.alert(
+    'Success',
+    'We have saved your information.',
+    [
+      {
+        text: 'OK',
+        onPress: () => {
+          // Pass data to DietCategoriesScreen on successful submission
+          navigation.navigate('DietCategories', { allergies: selectedAllergies });
+        },
+      },
+    ],
+  );
+};
+
     setProfileData(data);
     Alert.alert(
       'Success',
